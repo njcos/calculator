@@ -130,10 +130,15 @@ function operate(num1, num2, op) {
 
 
     } else if (op === "/") {
-        final = numOne/numTwo
-        screen.textContent = final
-        clear()
-        return final
+        if(numOne === 0 || numTwo === 0) {
+            screen.textContent = "Nice Try"
+            clear()
+        } else {
+            final = numOne/numTwo
+            screen.textContent = final
+            clear()
+            return final
+        }
 
 
     } else { 
