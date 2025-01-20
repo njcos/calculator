@@ -1,40 +1,94 @@
-const numPanel = document.querySelector(".nums")
-const operatorPanel = document.querySelector(".operators")
+const numButtons = document.querySelectorAll('.numButtons')
+const plus = document.querySelector('.plus')
+const minus = document.querySelector('.minus')
+const multiply = document.querySelector('.multiply')
+const divide = document.querySelector('.divide')
+const equal = document.querySelector('.equalButton')
 
 
-// CREATING THE NUMBER BUTTONS  
-function numberButtons () {
-    
-    for(let i = 1; i <= 4; i++) {
-        const numRows = document.createElement('div')
-        numRows.classList.add('numRows')
-        numPanel.appendChild(numRows)
-        for(let r = 1; r <=3; r++) {
-            const numButtons = document.createElement('button')
-            numButtons.classList.add('numButtons')
-            numButtons.textContent='1'
-            numRows.appendChild(numButtons)
-        }
 
+let numberOne = ""
+let numberTwo = ""
+let operator = ""
+
+plus.addEventListener('click', () => {
+    operator = "+"
+    console.log(operator)
+})
+
+minus.addEventListener('click', () => {
+    if(numberOne === ''){
+        numberOne += '-'
+    } else if ((numberOne !== '') && !(numberTwo !== '')) {
+        numberTwo += "-"
+    } else {
+
+        operator = "-"
+    }
+    console.log(operator)
+})
+
+multiply.addEventListener('click', () => {
+    operator = "*"
+    console.log(operator)
+
+})
+
+divide.addEventListener('click', () => {
+    operator = "/"
+    console.log(operator)
+
+})
+
+
+    numButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if ((numberOne === '') || (numberOne === '-')){
+                numberOne += btn.textContent
+                console.log(numberOne)
+            } else {
+                numberTwo += btn.textContent
+                console.log(numberTwo)
+            }
+         
+        })
+        
+    })
+
+function operate(num1, num2, op) {
+    let final = 0
+    if (op === "+") {
+        final = num1+num2
+        numberOne = ''
+        numberTwo = ''
+        operator = ''
+        console.log(final)
+    } else if ( op === "-") {
+        final = num1-num2
+        numberOne = ''
+        numberTwo = ''
+        operator = ''
+        console.log(final)
+
+    } else if ( op === "*") {
+        final = num1*num2
+        numberOne = ''
+        numberTwo = ''
+        operator = ''
+        console.log(final)
+
+    } else if (op === "/") {
+        final = num1/num2
+        numberOne = ''
+        numberTwo = ''
+        operator = ''
+        console.log(final)
+
+    } else {
+        
     }
 }
- 
-numberButtons()
 
-//CREATE OPERATOR NUMBERS
-
-function opButtons () {
-    for(let i = 1; i <= 2; i++) {
-        const operatorRow = document.createElement('div')
-        operatorRow.classList.add('operatorRow')
-        operatorPanel.appendChild(operatorRow)
-        for(let r = 1; r <= 2; r++) {
-            const operatorButtons = document.createElement('button')
-            operatorButtons.classList.add('operatorButtons')
-            operatorButtons.textContent='+'
-            operatorRow.appendChild(operatorButtons)
-        }
-    }
-}
-
-opButtons()
+equal.addEventListener('click', () => {
+    operate(parseFloat(numberOne), parseFloat(numberTwo), operator)
+})

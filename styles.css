@@ -3,9 +3,8 @@
     flex-direction: column;
     border: 4px solid black;
     border-radius: 1em;
-    padding: 20px;
-    width: 55%;
-    height: 50%;
+    padding: 40px;px;
+    width: 425px;
     justify-content: center;
     align-items: center;
 }
@@ -17,6 +16,7 @@
     border: 2px solid black;
     border-radius: 1em;
     background-color: rgb(230, 230, 230);
+    padding: 10px;
 
 }   
 
@@ -25,76 +25,49 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    
-    height: 100%;
     border: 2px solid black;
     border-radius: 1em;
     background-color: rgb(230, 230, 230);
     margin-top: 50px;
+    padding: 10px;
 
 }
 
-.numButtons{
+button{
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid black;
     border-radius: 100%;
+    width: 15%;
+    height: 15%;
+    padding: 2em;
     margin: .7em;
-    padding: 15%;
+    flex: 1;
 
 }
 
 .numRows{
     display: flex;
     flex-direction: row;
-    width: 100%;
-}
-.nums {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-
 }
 
-.funcs {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-}
-
-.operators: {
-    width: 100%;
-    height: 100%;
-    flex: 1;
-    background-color: green;
-    justify-content: flex-start;
-
-}
-
-.operatorButtons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15%;
-    border: 2px solid black;
-    border-radius: 100%;
-    margin: .7em;
-    background-color: pink;
-}
-
-.operatorRow {
+.opRows{
     display: flex;
     flex-direction: row;
 }
-
-.equalButton {
+.equal{
     display: flex;
-    border: 2px solid black;
-    border-radius: 5em;
-    margin: .7em;
-    background-color: pink;
+}
+.equalButton{
+    height: 165px;
+    border-radius: 10px;
+    background-color: rgb(255, 213, 0)
+
+
+
+}
+
+.opButtons {
+    background-color: rgb(255, 213, 0)
 }
