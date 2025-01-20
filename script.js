@@ -4,7 +4,9 @@ const minus = document.querySelector('.minus')
 const multiply = document.querySelector('.multiply')
 const divide = document.querySelector('.divide')
 const equal = document.querySelector('.equalButton')
-
+const screenContainer = document.querySelector('.screen')
+const screen = document.createElement('h2')
+screenContainer.appendChild(screen)
 
 
 let numberOne = ""
@@ -12,46 +14,55 @@ let numberTwo = ""
 let operator = ""
 
 plus.addEventListener('click', () => {
-    operator = "+"
-    console.log(operator)
+    if(numberOne !== ''){
+        operator = "+"
+        screen.textContent= numberOne + operator
+    }
 })
 
 minus.addEventListener('click', () => {
     if(numberOne === ''){
         numberOne += '-'
-    } else if ((numberOne !== '') && !(numberTwo !== '')) {
-        numberTwo += "-"
-    } else {
+        screen.textContent=numberOne
+    } else if ((numberOne !== '') && (numberOne !== '-') && (operator === '')) {
+        operator = '-'
+        screen.textContent= numberOne + operator
+    } else if (numberTwo !== '-'){
+        numberTwo +='-'
+        screen.textContent = numberOne + operator + numberTwo
 
-        operator = "-"
     }
     console.log(operator)
 })
 
 multiply.addEventListener('click', () => {
-    operator = "*"
-    console.log(operator)
+    if(numberOne !== '') {
+        operator = "*"
+        screen.textContent= numberOne + operator
 
+    }
 })
 
 divide.addEventListener('click', () => {
-    operator = "/"
-    console.log(operator)
+    if(numberOne !== ''){
+        operator = "/"
+        screen.textContent= numberOne + operator
+    }
 
 })
 
 
-    numButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if ((numberOne === '') || (numberOne === '-')){
-                numberOne += btn.textContent
-                console.log(numberOne)
-            } else {
-                numberTwo += btn.textContent
-                console.log(numberTwo)
-            }
+numButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (operator === ''){
+            numberOne += btn.textContent
+            screen.textContent= numberOne
+        } else {
+            numberTwo += btn.textContent
+            screen.textContent = numberOne + operator + numberTwo
+        }
          
-        })
+    })
         
     })
 
@@ -59,34 +70,36 @@ function operate(num1, num2, op) {
     let final = 0
     if (op === "+") {
         final = num1+num2
-        numberOne = ''
-        numberTwo = ''
-        operator = ''
+        screen.textContent = final
+        clear()
         console.log(final)
     } else if ( op === "-") {
         final = num1-num2
-        numberOne = ''
-        numberTwo = ''
-        operator = ''
+        screen.textContent = final
+        clear()
         console.log(final)
 
     } else if ( op === "*") {
         final = num1*num2
-        numberOne = ''
-        numberTwo = ''
-        operator = ''
+        screen.textContent = final
+        clear()
         console.log(final)
 
     } else if (op === "/") {
         final = num1/num2
-        numberOne = ''
-        numberTwo = ''
-        operator = ''
+        screen.textContent = final
+        clear()
         console.log(final)
 
     } else {
         
     }
+}
+
+function clear () {
+    numberOne = '';
+    numberTwo = '';
+    operator = '';
 }
 
 equal.addEventListener('click', () => {
