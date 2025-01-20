@@ -71,3 +71,8 @@ button{
 .opButtons {
     background-color: rgb(255, 213, 0)
 }
+
+.clear{
+    height: 165px;
+    border-radius: 10px;
+    background-color: rgb(251, 65, 14)

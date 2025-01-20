@@ -4,6 +4,7 @@ const minus = document.querySelector('.minus')
 const multiply = document.querySelector('.multiply')
 const divide = document.querySelector('.divide')
 const equal = document.querySelector('.equalButton')
+const clearButton = document.querySelector('.clear')
 const screenContainer = document.querySelector('.screen')
 const screen = document.createElement('h2')
 screenContainer.appendChild(screen)
@@ -16,7 +17,13 @@ let operator = ""
 plus.addEventListener('click', () => {
     if(numberOne !== ''){
         operator = "+"
-        screen.textContent= numberOne + operator
+        screen.textContent= numberOne +' '+ operator
+    }
+    
+    if (numberTwo !== '') {
+        numberOne = operate(numberOne, numberTwo, operator)
+        operator = '+'
+        screen.textContent=numberOne + ' ' + operator
     }
 })
 
@@ -26,11 +33,14 @@ minus.addEventListener('click', () => {
         screen.textContent=numberOne
     } else if ((numberOne !== '') && (numberOne !== '-') && (operator === '')) {
         operator = '-'
-        screen.textContent= numberOne + operator
-    } else if (numberTwo !== '-'){
+        screen.textContent= numberOne +' '+ operator
+    } else if ((operator !== '') && (numberTwo === '')) {
         numberTwo +='-'
-        screen.textContent = numberOne + operator + numberTwo
-
+        screen.textContent = numberOne + ' ' +operator + ' ' +numberTwo
+    } else if ((numberTwo !== '') && (numberTwo !== '-')){
+        numberOne = operate(numberOne, numberTwo, operator)
+        operator = '-'
+        screen.textContent=numberOne + ' ' + operator
     }
     console.log(operator)
 })
@@ -38,15 +48,27 @@ minus.addEventListener('click', () => {
 multiply.addEventListener('click', () => {
     if(numberOne !== '') {
         operator = "*"
-        screen.textContent= numberOne + operator
+        screen.textContent= numberOne +' ' +operator
 
+    }
+
+    if (numberTwo !== '') {
+        numberOne = operate(numberOne, numberTwo, operator)
+        operator = '*'
+        screen.textContent=numberOne + ' ' + operator
     }
 })
 
 divide.addEventListener('click', () => {
     if(numberOne !== ''){
         operator = "/"
-        screen.textContent= numberOne + operator
+        screen.textContent= numberOne + ' ' + operator
+    }
+
+    if (numberTwo !== '') {
+        numberOne = operate(numberOne, numberTwo, operator)
+        operator = '/'
+        screen.textContent=numberOne + ' ' + operator
     }
 
 })
@@ -59,7 +81,7 @@ numButtons.forEach(btn => {
             screen.textContent= numberOne
         } else {
             numberTwo += btn.textContent
-            screen.textContent = numberOne + operator + numberTwo
+            screen.textContent = numberOne + ' ' + operator + ' ' + numberTwo
         }
          
     })
@@ -68,32 +90,56 @@ numButtons.forEach(btn => {
 
 function operate(num1, num2, op) {
     let final = 0
+    let numOne = 0
+    let numTwo = 0
+    if((num1 === "-") || (num1 === '')) {
+        numOne = 0
+    } else {
+        numOne = parseFloat(num1)
+    }
+
+    if((num2 === "-") || (num2 ==='')){
+        numTwo = 0
+    } else {
+        numTwo = parseFloat(num2)
+    }
+
+
     if (op === "+") {
-        final = num1+num2
+        final = numOne+numTwo
         screen.textContent = final
         clear()
-        console.log(final)
+        return final
+
+
     } else if ( op === "-") {
-        final = num1-num2
+        final = numOne-numTwo
         screen.textContent = final
         clear()
-        console.log(final)
+        return final
+
+
 
     } else if ( op === "*") {
-        final = num1*num2
+        final = numOne*numTwo
+
         screen.textContent = final
         clear()
-        console.log(final)
+        return final
+
+
 
     } else if (op === "/") {
-        final = num1/num2
+        final = numOne/numTwo
         screen.textContent = final
         clear()
-        console.log(final)
+        return final
 
-    } else {
-        
+
+    } else { 
     }
+
+
 }
 
 function clear () {
@@ -103,5 +149,10 @@ function clear () {
 }
 
 equal.addEventListener('click', () => {
-    operate(parseFloat(numberOne), parseFloat(numberTwo), operator)
+    console.log(operate(numberOne, numberTwo, operator))
+})
+
+clearButton.addEventListener('click', () => {
+    clear()
+    screen.textContent = ''
 })
