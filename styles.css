@@ -75,4 +75,13 @@ button{
 .clear{
     height: 165px;
     border-radius: 10px;
-    background-color: rgb(251, 65, 14)
+    background-color: rgb(251, 65, 14);
+}
+h2{
+    font-size: 52px;
+}
+
+.screen {
+    display: flex;
+    justify-content: flex-end;
+}
